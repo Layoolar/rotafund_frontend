@@ -8,9 +8,10 @@ const RootLayout = () => {
     <ThemeProvider>
       <Stack>
           <Stack.Screen name="index" options={{headerShown: false}} />
+          <Stack.Screen name="screens/VerificationScreen" options={{ headerShown: false}} />
       </Stack>
     </ThemeProvider>
-  );
+  )
 }
 
 export default RootLayout;
