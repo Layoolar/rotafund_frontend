@@ -1,56 +1,75 @@
-import React from 'react';
-import { Pressable, Text, ViewStyle, TextStyle, StyleProp } from 'react-native';
+import React from "react";
+import { Pressable, ActivityIndicator, StyleSheet, ViewStyle } from "react-native";
+import { colors, radius, spacing } from '../constants/theme';
+import ThemedText from "./ThemeText";
 
-import Colors from '../constants/Color';
-import { useTheme } from '../providers/ThemeProviders';
+type Props = {
+  label: string;
+  onPress?: () => void;
+  loading?: boolean;
+  variant?: "solid" | "outline" | "google";
+  style?: ViewStyle;
+  leftIcon?: React.ReactNode;
+  disabled?: boolean;
+};
 
-interface ButtonProps {
-  title: string;
-  onPress: () => void;
-  style?: StyleProp<ViewStyle>;
-  textStyle?: StyleProp<TextStyle>;
-}
-
-const Button: React.FC<ButtonProps> = ({ title, onPress, style, textStyle }) => {
-  const { theme: resolvedTheme } = useTheme(); 
-  const theme = Colors[resolvedTheme]; 
-
+export default function Button({
+  label,
+  onPress,
+  loading,
+  variant = "solid",
+  style,
+  leftIcon,
+  disabled,
+}: Props) {
+  const isOutline = variant === "outline" || variant === "google";
   return (
     <Pressable
-      style={(state) => [
-        { backgroundColor: theme.button },
-        buttonStyles.base,
-        state.pressed && { opacity: 0.7 }, 
+      accessibilityRole="button"
+      onPress={onPress}
+      disabled={disabled || loading}
+      style={({ pressed }) => [
+        styles.base,
+        variant === "solid" ? styles.solid : styles.outline,
+        pressed && { opacity: 0.9 },
+        disabled && { opacity: 0.6 },
         style,
       ]}
-      onPress={onPress}
     >
-      <Text style={[buttonStyles.text, { color: theme.buttonText }, textStyle]}>
-        {title}
-      </Text>
+      {loading ? (
+        <ActivityIndicator color={variant === "solid" ? colors.buttonText : colors.text} />
+      ) : (
+        <>
+          {leftIcon}
+          <ThemedText style={[styles.label, isOutline ? styles.labelOutline : styles.labelSolid]}>
+            {label}
+          </ThemedText>
+        </>
+      )}
     </Pressable>
   );
-};
+}
 
-
-const buttonStyles = {
+const styles = StyleSheet.create({
   base: {
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-    borderRadius: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  } as const,
+    height: 56,
+    borderRadius: radius.xl,
+    paddingHorizontal: spacing.lg,
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    gap: spacing.sm,
+  },
+  solid: {
+    backgroundColor: colors.button,
+  },
+  outline: {
+    backgroundColor: colors.bg,
+    borderWidth: 1,
+    borderColor: colors.outline,
+  },
+  label: { fontSize: 16, fontWeight: "600" },
+  labelSolid: { color: colors.buttonText },
+  labelOutline: { color: colors.text },
+});
 
-  text: {
-    fontSize: 16,
-    fontWeight: 'bold' as const,
-  } as const,
-};
-
-export default Button;
