@@ -18,6 +18,9 @@ export default function SplashScreen() {
       <TouchableOpacity onPress={() => router.push("/screens/VerificationScreen")}>
          <ThemedText variant='caption'>Selfie</ThemedText>
       </TouchableOpacity>
+      <TouchableOpacity onPress={() => router.push('/auth/login')}>
+        <ThemedText variant='caption'>Login</ThemedText>
+      </TouchableOpacity>
       {/* <Text style={[Typography.body, { color: colors.text }, styles.longCopy]}>
         Welcome to Rota Funds
       </Text> */}
