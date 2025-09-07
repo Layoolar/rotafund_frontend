@@ -44,7 +44,7 @@ export default function Login() {
           />
 
           <View style={styles.footer}>
-            <ThemedText style={styles.footerText}>Don't have an account?</ThemedText>
+            <ThemedText style={styles.footerText}>Don`t have an account?</ThemedText>
             <Pressable onPress={() => router.push("/auth/signup")}>
               <ThemedText variant="caption" style={styles.link}>Sign up</ThemedText>
             </Pressable>
@@ -57,7 +57,7 @@ export default function Login() {
 
 const styles = StyleSheet.create({
   container: { flexGrow: 1, padding: spacing.xxl, backgroundColor: colors.bg, justifyContent: "center" },
-  title: { fontSize: 36, fontWeight: "800", textAlign: "center", marginBottom: spacing.xxl },
+  title: { fontSize: 36, fontWeight: "800", color: colors.dark, textAlign: "center", marginBottom: spacing.xxl },
   stack: { gap: spacing.lg },
   footer: { flexDirection: "row", justifyContent: "center", marginTop: spacing.lg },
   footerText: { color: colors.subtext },
