@@ -13,6 +13,7 @@ const RootLayout = () => {
           <Stack.Screen name="auth/signup" options={{ headerShown: false }} />
           <Stack.Screen name="auth/nationality" options={{ headerShown: false }} />
           <Stack.Screen name="auth/done" options={{ headerShown: false }} />
+          <Stack.Screen name="protected/dashboard" options={{ headerShown: false }} />
        </Stack>
     </ThemeProvider>
   )

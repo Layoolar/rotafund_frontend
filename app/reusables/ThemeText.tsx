@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, TextProps, StyleProp, TextStyle } from 'react-native';
 import { useTheme } from '../providers/ThemeProviders';
 import Colors from '../constants/Color';
+import { Theme } from '../constants/Color';
 
 type Variant = 'heading' | 'subheading' | 'body' | 'caption';
 

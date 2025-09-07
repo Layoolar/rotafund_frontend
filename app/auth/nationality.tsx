@@ -15,7 +15,7 @@ export default function Nationality() {
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined} style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={styles.container}>
-        <ThemedText style={styles.title}>Nationality</ThemedText>
+        <ThemedText  style={styles.title}>Nationality</ThemedText>
 
         <View style={styles.stack}>
           <CountrySelect value={nationality} onChange={setNationality} placeholder="Select" />
@@ -24,10 +24,10 @@ export default function Nationality() {
 
         <View style={{ height: 80 }} />
 
-         <ThemedText style={styles.doneTitle}>Done</ThemedText>
+         <ThemedText variant="caption" style={styles.doneTitle}>Done</ThemedText>
         <ThemedText style={styles.doneCopy}>Your account has been created.</ThemedText> 
 
-        <Button label="Continue" style={{ marginTop: spacing.xl }} onPress={() => router.replace("/auth/done")} />
+        <Button label="Continue" style={{ marginTop: spacing.xl }} onPress={() => router.replace("/protected/dashboard")} />
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -35,8 +35,8 @@ export default function Nationality() {
 
 const styles = StyleSheet.create({
   container: { flexGrow: 1, padding: spacing.xxl, backgroundColor: colors.bg, justifyContent: "center" },
-  title: { fontSize: 36, fontWeight: "800", textAlign: "center", marginBottom: spacing.xl },
+  title: { fontSize: 36, fontWeight: "800", textAlign: "center", marginBottom: spacing.xl, color: "#3F3F46" },
   stack: { gap: spacing.lg },
-  doneTitle: { fontSize: 32, fontWeight: "800", textAlign: "center", marginTop: spacing.sm },
-  doneCopy: { marginTop: spacing.sm, color: colors.subtext, fontSize: 16, textAlign: "center" },
+  doneTitle: { fontSize: 32, fontWeight: "800", textAlign: "center", marginTop: spacing.sm, color: "#3F3F46" },
+  doneCopy: { marginTop: spacing.sm, color: colors.button, fontSize: 16, textAlign: "center" },
 });
